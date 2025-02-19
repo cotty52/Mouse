@@ -1,0 +1,7 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "pmw3389dm-t3qu")(type "KiCad")(uri "${KIPRJMOD}/Mouse_Project_Libraries/pmw3389dm-t3qu.pretty")(options "")(descr ""))
+  (lib (name "Kailh_Switch")(type "KiCad")(uri "${KIPRJMOD}/Mouse_Project_Libraries/Kailh_Switch.pretty")(options "")(descr ""))
+  (lib (name "TPS62821DLCR")(type "KiCad")(uri "${KIPRJMOD}/Mouse_Project_Libraries/TPS62821DLCR.pretty")(options "")(descr ""))
+  (lib (name "nrf52840_promicro")(type "KiCad")(uri "${KIPRJMOD}/Mouse_Project_Libraries/nrf52840_promicro.pretty")(options "")(descr ""))
+)
