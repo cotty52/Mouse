@@ -5,4 +5,5 @@
   (lib (name "pmw3389dm-t3qu")(type "KiCad")(uri "${KIPRJMOD}/Mouse_Project_Libraries/pmw3389dm-t3qu.kicad_sym")(options "")(descr ""))
   (lib (name "Kailh_Switch")(type "KiCad")(uri "${KIPRJMOD}/Mouse_Project_Libraries/Kailh_Switch.kicad_sym")(options "")(descr ""))
   (lib (name "TPS62821DLCR")(type "KiCad")(uri "${KIPRJMOD}/Mouse_Project_Libraries/TPS62821DLCR.kicad_sym")(options "")(descr ""))
+  (lib (name "B2B-PH-K-S")(type "KiCad")(uri "${KIPRJMOD}/Mouse_Project_Libraries/B2B-PH-K-S.kicad_sym")(options "")(descr "2-pin JST Connector for LiPO"))
 )

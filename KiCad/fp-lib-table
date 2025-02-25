@@ -4,4 +4,5 @@
   (lib (name "Kailh_Switch")(type "KiCad")(uri "${KIPRJMOD}/Mouse_Project_Libraries/Kailh_Switch.pretty")(options "")(descr ""))
   (lib (name "TPS62821DLCR")(type "KiCad")(uri "${KIPRJMOD}/Mouse_Project_Libraries/TPS62821DLCR.pretty")(options "")(descr ""))
   (lib (name "nrf52840_promicro")(type "KiCad")(uri "${KIPRJMOD}/Mouse_Project_Libraries/nrf52840_promicro.pretty")(options "")(descr ""))
+  (lib (name "B2B-PH-K-S")(type "KiCad")(uri "${KIPRJMOD}/Mouse_Project_Libraries/B2B-PH-K-S.pretty")(options "")(descr ""))
 )
