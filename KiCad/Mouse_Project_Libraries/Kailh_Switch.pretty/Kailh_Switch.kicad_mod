@@ -92,7 +92,7 @@
 	)
 	(pad "1" thru_hole oval
 		(at 0 -5.08)
-		(size 2.1 1.524)
+		(size 2.1 1.6)
 		(drill 1.1)
 		(layers "*.Cu" "*.Mask")
 		(remove_unused_layers no)
@@ -101,7 +101,7 @@
 	)
 	(pad "2" thru_hole oval
 		(at 0 0)
-		(size 2.1 1.524)
+		(size 2.1 1.6)
 		(drill 1.1)
 		(layers "*.Cu" "*.Mask")
 		(remove_unused_layers no)
@@ -110,7 +110,7 @@
 	)
 	(pad "3" thru_hole oval
 		(at 0 5.08)
-		(size 2.1 1.524)
+		(size 2.1 1.6)
 		(drill 1.1)
 		(layers "*.Cu" "*.Mask")
 		(remove_unused_layers no)

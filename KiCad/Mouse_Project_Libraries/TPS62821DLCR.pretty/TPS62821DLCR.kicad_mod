@@ -216,4 +216,15 @@
 		(layers "F.Cu" "F.Paste" "F.Mask")
 		(uuid "62745a86-cdc4-47ae-a64f-42c5068c440d")
 	)
+	(model "${KIPRJMOD}/Mouse_Project_Libraries/TPS62821DLCR.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz -90 0 0)
+		)
+	)
 )

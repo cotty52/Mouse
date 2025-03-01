@@ -79,8 +79,8 @@
 		(uuid "daf99937-6bd5-4418-8bad-b095192c5329")
 	)
 	(fp_circle
-		(center -7 -5.5)
-		(end -7.5 -5.5)
+		(center -5.5 -8.1)
+		(end -6 -8.1)
 		(stroke
 			(width 0.2)
 			(type default)
@@ -88,6 +88,17 @@
 		(fill none)
 		(layer "F.SilkS")
 		(uuid "9b6b72d6-3e4c-4eb8-a3f3-2534b1faddcc")
+	)
+	(fp_rect
+		(start -4 -7.5)
+		(end 4 7.5)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(fill none)
+		(layer "Edge.Cuts")
+		(uuid "8d51af9d-c77f-46d7-9017-d91116edfc87")
 	)
 	(fp_text user "${REFERENCE}"
 		(at 0 11.5 0)
@@ -100,208 +111,6 @@
 				(thickness 0.15)
 			)
 		)
-	)
-	(dimension
-		(type aligned)
-		(layer "Cmts.User")
-		(uuid "3c2374d0-3ba5-4501-b00a-07d2cac6183c")
-		(pts
-			(xy -4.55 -8.1) (xy 4.55 -8.1)
-		)
-		(height -3.4)
-		(gr_text "9.1000 mm"
-			(at 0 -12.65 0)
-			(layer "Cmts.User")
-			(uuid "3c2374d0-3ba5-4501-b00a-07d2cac6183c")
-			(effects
-				(font
-					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(format
-			(prefix "")
-			(suffix "")
-			(units 3)
-			(units_format 1)
-			(precision 4)
-		)
-		(style
-			(thickness 0.1)
-			(arrow_length 1.27)
-			(text_position_mode 0)
-			(extension_height 0.58642)
-			(extension_offset 0.5) keep_text_aligned)
-	)
-	(dimension
-		(type aligned)
-		(layer "Cmts.User")
-		(uuid "6c73705b-c46b-4bb4-b1bd-466e30df3cad")
-		(pts
-			(xy 4.55 -8.1) (xy 4.55 8.1)
-		)
-		(height -6.95)
-		(gr_text "16.2000 mm"
-			(at 12.5 0 90)
-			(layer "Cmts.User")
-			(uuid "6c73705b-c46b-4bb4-b1bd-466e30df3cad")
-			(effects
-				(font
-					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(format
-			(prefix "")
-			(suffix "")
-			(units 3)
-			(units_format 1)
-			(precision 4)
-		)
-		(style
-			(thickness 0.1)
-			(arrow_length 1.27)
-			(text_position_mode 2)
-			(extension_height 0.58642)
-			(extension_offset 0.5) keep_text_aligned)
-	)
-	(dimension
-		(type orthogonal)
-		(layer "Cmts.User")
-		(uuid "15fb4686-e299-46fa-aba9-82b68d920f65")
-		(pts
-			(xy 5.35 -5.69) (xy -5.35 -6.58)
-		)
-		(height -8.81)
-		(orientation 0)
-		(gr_text "10.7000 mm"
-			(at 0 -15.65 0)
-			(layer "Cmts.User")
-			(uuid "15fb4686-e299-46fa-aba9-82b68d920f65")
-			(effects
-				(font
-					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(format
-			(prefix "")
-			(suffix "")
-			(units 3)
-			(units_format 1)
-			(precision 4)
-		)
-		(style
-			(thickness 0.1)
-			(arrow_length 1.27)
-			(text_position_mode 0)
-			(extension_height 0.58642)
-			(extension_offset 0.5) keep_text_aligned)
-	)
-	(dimension
-		(type orthogonal)
-		(layer "Cmts.User")
-		(uuid "490fc612-f1d3-427d-a088-e3cc6f7eeea6")
-		(pts
-			(xy -5.35 -4.8) (xy 5.35 -3.91)
-		)
-		(height 13.35)
-		(orientation 1)
-		(gr_text "0.8900 mm"
-			(at 9.5 -3 90)
-			(layer "Cmts.User")
-			(uuid "490fc612-f1d3-427d-a088-e3cc6f7eeea6")
-			(effects
-				(font
-					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(format
-			(prefix "")
-			(suffix "")
-			(units 3)
-			(units_format 1)
-			(precision 4)
-		)
-		(style
-			(thickness 0.1)
-			(arrow_length 1.27)
-			(text_position_mode 2)
-			(extension_height 0.58642)
-			(extension_offset 0.5) keep_text_aligned)
-	)
-	(dimension
-		(type orthogonal)
-		(layer "Cmts.User")
-		(uuid "9b791182-efd6-4a46-a54d-7bff15f8f2c7")
-		(pts
-			(xy -3.55 -8.1) (xy -4.35 -6.58)
-		)
-		(height -5.95)
-		(orientation 1)
-		(gr_text "1.5200 mm"
-			(at -11 -9.5 90)
-			(layer "Cmts.User")
-			(uuid "9b791182-efd6-4a46-a54d-7bff15f8f2c7")
-			(effects
-				(font
-					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(format
-			(prefix "")
-			(suffix "")
-			(units 3)
-			(units_format 1)
-			(precision 4)
-		)
-		(style
-			(thickness 0.1)
-			(arrow_length 1.27)
-			(text_position_mode 2)
-			(extension_height 0.58642)
-			(extension_offset 0.5) keep_text_aligned)
-	)
-	(dimension
-		(type orthogonal)
-		(layer "Cmts.User")
-		(uuid "af6a1f8d-3b7f-4f21-82b3-ff76b9d84973")
-		(pts
-			(xy -5.35 -3.02) (xy -5.35 -1.24)
-		)
-		(height -3.15)
-		(orientation 1)
-		(gr_text "1.7800 mm"
-			(at -10 0 90)
-			(layer "Cmts.User")
-			(uuid "af6a1f8d-3b7f-4f21-82b3-ff76b9d84973")
-			(effects
-				(font
-					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(format
-			(prefix "")
-			(suffix "")
-			(units 3)
-			(units_format 1)
-			(precision 4)
-		)
-		(style
-			(thickness 0.1)
-			(arrow_length 1.27)
-			(text_position_mode 2)
-			(extension_height 0.58642)
-			(extension_offset 0.5) keep_text_aligned)
 	)
 	(pad "1" thru_hole circle
 		(at -5.35 -6.58)
