@@ -18,4 +18,5 @@
   (lib (name "TTC_Gold_Encoder")(type "KiCad")(uri "${MOUSE_PROJECT}/TTC_Gold_Encoder.pretty")(options "")(descr ""))
   (lib (name "CL-SB-13B-01T")(type "KiCad")(uri "${MOUSE_PROJECT}/CL-SB-13B-01T.pretty")(options "")(descr ""))
   (lib (name "EG1218")(type "KiCad")(uri "${MOUSE_PROJECT}/EG1218.pretty")(options "")(descr ""))
+  (lib (name "CRGCQ1206F330K")(type "KiCad")(uri "${MOUSE_PROJECT}/CRGCQ1206F330K.pretty")(options "")(descr ""))
 )

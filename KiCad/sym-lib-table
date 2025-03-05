@@ -19,4 +19,5 @@
   (lib (name "nrf52840_promicro")(type "KiCad")(uri "${MOUSE_PROJECT}/nrf52840_promicro.kicad_sym")(options "")(descr ""))
   (lib (name "CL-SB-13B-01T")(type "KiCad")(uri "${MOUSE_PROJECT}/CL-SB-13B-01T.kicad_sym")(options "")(descr ""))
   (lib (name "EG1218")(type "KiCad")(uri "${MOUSE_PROJECT}/EG1218.kicad_sym")(options "")(descr ""))
+  (lib (name "CRGCQ1206F330K")(type "KiCad")(uri "${MOUSE_PROJECT}/CRGCQ1206F330K.kicad_sym")(options "")(descr ""))
 )
