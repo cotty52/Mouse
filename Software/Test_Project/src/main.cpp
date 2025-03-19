@@ -30,35 +30,18 @@ bool rightButtonState = false;
 bool lastLeftButtonState = false;
 bool lastRightButtonState = false;
 
-void setup() {
-  Serial.begin(115200);
-  while (!Serial) delay(10);
+uint8_t readRegister(uint8_t reg_addr) {
+  digitalWrite(CS_PIN, LOW);
   
-  Serial.println("Bluetooth Mouse with PMW3389");
+  SPI.beginTransaction(SPISettings(2000000, MSBFIRST, SPI_MODE3));
+  SPI.transfer(reg_addr & 0x7f);
+  uint8_t data = SPI.transfer(0);
+  SPI.endTransaction();
   
-  // Initialize button pins
-  pinMode(LEFT_PIN, INPUT_PULLUP);
-  pinMode(RIGHT_PIN, INPUT_PULLUP);
-  
-  // Initialize SPI and sensor pins
-  pinMode(CS_PIN, OUTPUT);
   digitalWrite(CS_PIN, HIGH);
-  SPI.begin();
+  delayMicroseconds(1);
   
-  // Initialize PMW3389
-  initializePMW3389();
-  
-  // Initialize Bluefruit
-  Bluefruit.begin();
-  Bluefruit.setName("meese");
-  Bluefruit.setTxPower(4);
-  
-  bledis.setManufacturer("OTTY co");
-  bledis.setModel("model dees nuts");
-  bledis.begin();
-  // uuuh ask claude why twice??
-  blehid.begin();
-  startAdv();
+  return data;
 }
 
 void initializePMW3389() {
@@ -79,20 +62,6 @@ void initializePMW3389() {
   // These would be specific to your sensor configuration
   
   delay(100);
-}
-
-uint8_t readRegister(uint8_t reg_addr) {
-  digitalWrite(CS_PIN, LOW);
-  
-  SPI.beginTransaction(SPISettings(2000000, MSBFIRST, SPI_MODE3));
-  SPI.transfer(reg_addr & 0x7f);
-  uint8_t data = SPI.transfer(0);
-  SPI.endTransaction();
-  
-  digitalWrite(CS_PIN, HIGH);
-  delayMicroseconds(1);
-  
-  return data;
 }
 
 void writeRegister(uint8_t reg_addr, uint8_t data) {
@@ -128,6 +97,37 @@ void startAdv(void) {
   Bluefruit.Advertising.setInterval(32, 244);
   Bluefruit.Advertising.setFastTimeout(30);
   Bluefruit.Advertising.start(0);
+}
+
+void setup() {
+  Serial.begin(115200);
+  while (!Serial) delay(10);
+  
+  Serial.println("Bluetooth Mouse with PMW3389");
+  
+  // Initialize button pins
+  pinMode(LEFT_PIN, INPUT_PULLUP);
+  pinMode(RIGHT_PIN, INPUT_PULLUP);
+  
+  // Initialize SPI and sensor pins
+  pinMode(CS_PIN, OUTPUT);
+  digitalWrite(CS_PIN, HIGH);
+  SPI.begin();
+  
+  // Initialize PMW3389
+  initializePMW3389();
+  
+  // Initialize Bluefruit
+  Bluefruit.begin();
+  Bluefruit.setName("meese");
+  Bluefruit.setTxPower(4);
+  
+  bledis.setManufacturer("OTTY co");
+  bledis.setModel("model dees nuts");
+  bledis.begin();
+  // uuuh ask claude why twice??
+  blehid.begin();
+  startAdv();
 }
 
 void loop() {
