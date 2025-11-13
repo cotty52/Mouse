@@ -1,0 +1,7 @@
+default: hid-mouse
+build_dir: D:/GitHub/Mouse/Software/hid-mouse/build
+domains:
+  - name: hid-mouse
+    build_dir: D:/GitHub/Mouse/Software/hid-mouse/build/hid-mouse
+flash_order:
+  - hid-mouse

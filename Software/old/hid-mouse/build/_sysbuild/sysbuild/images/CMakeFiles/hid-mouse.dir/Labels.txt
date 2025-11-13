@@ -1,0 +1,13 @@
+# Target labels
+ hid-mouse
+# Source files and their labels
+D:/GitHub/Mouse/Software/hid-mouse/build/_sysbuild/sysbuild/images/CMakeFiles/hid-mouse
+D:/GitHub/Mouse/Software/hid-mouse/build/_sysbuild/sysbuild/images/CMakeFiles/hid-mouse.rule
+D:/GitHub/Mouse/Software/hid-mouse/build/_sysbuild/sysbuild/images/CMakeFiles/hid-mouse-complete.rule
+D:/GitHub/Mouse/Software/hid-mouse/build/_sysbuild/sysbuild/images/hid-mouse-prefix/src/hid-mouse-stamp/hid-mouse-build.rule
+D:/GitHub/Mouse/Software/hid-mouse/build/_sysbuild/sysbuild/images/hid-mouse-prefix/src/hid-mouse-stamp/hid-mouse-configure.rule
+D:/GitHub/Mouse/Software/hid-mouse/build/_sysbuild/sysbuild/images/hid-mouse-prefix/src/hid-mouse-stamp/hid-mouse-download.rule
+D:/GitHub/Mouse/Software/hid-mouse/build/_sysbuild/sysbuild/images/hid-mouse-prefix/src/hid-mouse-stamp/hid-mouse-install.rule
+D:/GitHub/Mouse/Software/hid-mouse/build/_sysbuild/sysbuild/images/hid-mouse-prefix/src/hid-mouse-stamp/hid-mouse-mkdir.rule
+D:/GitHub/Mouse/Software/hid-mouse/build/_sysbuild/sysbuild/images/hid-mouse-prefix/src/hid-mouse-stamp/hid-mouse-patch.rule
+D:/GitHub/Mouse/Software/hid-mouse/build/_sysbuild/sysbuild/images/hid-mouse-prefix/src/hid-mouse-stamp/hid-mouse-update.rule

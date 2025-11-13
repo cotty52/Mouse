@@ -1,0 +1,34 @@
+# Copyright (c) 2021 The ZMK Contributors
+# SPDX-License-Identifier: MIT
+
+if BOARD_NICE_NANO_V2
+
+config BOARD
+    default "nice_nano_v2"
+
+# Enable NRFX HAL - required for nRF52840 peripherals
+config HAS_NRFX
+    default y
+
+# Enable SOC series symbols - normally auto-configured but need to be explicit
+config SOC_SERIES_NRF52X
+    default y
+
+config SOC_NRF52840_QIAA
+    default y
+
+# BT controller privacy support
+config BT_CTLR_PRIVACY_SUPPORT
+    default y
+
+if USB_DEVICE_STACK
+
+config USB_NRFX
+    default y
+
+endif # USB_DEVICE_STACK
+
+config BT_CTLR
+    default BT
+
+endif # BOARD_NICE_NANO_V2

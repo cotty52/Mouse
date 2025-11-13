@@ -1,0 +1,17 @@
+{
+  "toolchainPath": "c:\\ncs\\toolchains\\c1a76fddb2",
+  "sdkPath": "c:\\ncs\\v3.1.1",
+  "board": "nrf52840gmouse/nrf52840",
+  "boardDir": "c:\\ncs\\v3.1.1\\nrf\\boards\\nordic\\nrf52840gmouse",
+  "boardDirs": [
+    "c:\\ncs\\v3.1.1\\nrf\\boards\\nordic\\nrf52840gmouse"
+  ],
+  "optimizations": "none",
+  "cmakeArgs": [],
+  "confFiles": [],
+  "buildDirectory": "build",
+  "kconfigFragments": [],
+  "snippets": [],
+  "dtcOverlays": [],
+  "extraDtcOverlays": []
+}

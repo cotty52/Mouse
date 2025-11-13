@@ -1,0 +1,10 @@
+identifier: nice_nano/nrf52840
+name: nrf52840
+vendor: Aliexpress
+type: mcu
+arch: arm
+ram: 256
+flash: 1024
+toolchain:
+  - zephyr
+supported: []
