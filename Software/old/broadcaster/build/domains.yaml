@@ -1,7 +1,0 @@
-default: broadcaster
-build_dir: D:/GitHub/Mouse/Software/broadcaster/build
-domains:
-  - name: broadcaster
-    build_dir: D:/GitHub/Mouse/Software/broadcaster/build/broadcaster
-flash_order:
-  - broadcaster
