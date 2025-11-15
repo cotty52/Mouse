@@ -4,15 +4,16 @@ This document is for tracking current tasks, next steps, and completed items to 
 
 ## Current Task
 
-*   **Build the nRF Desktop firmware for nice!nano v2:** Waiting for `west` toolchain setup to proceed with the build and verification.
+*   **Integrate the PMW3389 motion sensor.**
 
 ## Next Steps
 
-*   Verify the `west` toolchain is correctly installed and accessible.
-*   Execute the `west build` command for `nrf_desktop_5`.
-*   Verify the generated `zephyr.uf2` file's target address using `uf2conv.py`.
-*   Flash the firmware to the nice!nano v2.
-*   Test basic mouse functionality (movement, clicks) using the simulated buttons.
+*   **Download the PMW3389 driver manually.**
+*   **Provide the chip select (CS) and interrupt (IRQ) pins for the sensor.**
+*   Update `app.overlay` with the correct sensor pins.
+*   Build and test the firmware with the real motion sensor.
+*   Design and 3D print a case for the mouse.
+*   Implement power management for battery operation.
 
 ## Completed Tasks
 
@@ -24,6 +25,8 @@ This document is for tracking current tasks, next steps, and completed items to 
 *   Added `pm_static.yml` for correct UF2 bootloader memory layout.
 *   Created `prj.conf` to enable mouse functionality with simulated buttons.
 *   Created `app.overlay` to map simulated buttons to GPIO pins.
-*   Corrected `nrf_desktop_5/CMakeLists.txt` to include `BOARD_ROOT`.
-*   Created `notes.md` with project setup and future scenario guidance.
-
+*   Corrected `nrf_desktop_5/CMakeLists.txt` to include necessary directories.
+*   Created `notes.md` with project setup and build fix details.
+*   Built the nRF Desktop firmware for nice!nano v2.
+*   Tested basic mouse functionality (movement, clicks) using the simulated buttons.
+*   Documented the changes made to get the build to work in `notes.md`.

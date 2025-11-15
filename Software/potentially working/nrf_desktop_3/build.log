@@ -1,0 +1,10 @@
+-- west build: making build dir D:\GitHub\Mouse\Software\test_project\nrf_desktop_3\build pristine
+-- west build: generating a build system
+Loading Zephyr default modules (Zephyr base).
+-- Application: D:/GitHub/Mouse/Software/test_project/nrf_desktop_3
+-- CMake version: 4.1.2
+-- Found Python3: C:/Program Files/Python313/python.exe (found suitable version "3.13.9", minimum required is "3.10") found components: Interpreter
+-- Cache files will be written to: D:/GitHub/Mouse/Software/test_project/nrf_desktop_3/zephyr/.cache
+-- Zephyr version: 4.3.0-rc2 (D:/GitHub/Mouse/Software/test_project/nrf_desktop_3/zephyr)
+-- Found west (found suitable version "1.5.0", minimum required is "0.14.0")
+-- Board: nice_nano_v2, qualifiers: nrf52840

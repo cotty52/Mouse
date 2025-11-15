@@ -24,3 +24,4 @@ nrf52840/nrfmicro.kicad_pcb
 nrf52840/nrfmicro.kicad_prl
 nrf52840/nrfmicro.kicad_pro
 nrf52840/nrfmicro.kicad_sch
+build/

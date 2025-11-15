@@ -117,3 +117,71 @@ This directory defines the nice!nano v2 hardware for the Zephyr build system.
         };
     };
     ```
+
+## Build Fixes and Configuration Steps
+
+This section details the specific modifications made to resolve build errors and configure the project for simulated mouse functionality on the nice!nano v2.
+
+### 1. `nrf_desktop_5/CMakeLists.txt` Modifications
+
+The original `CMakeLists.txt` caused conflicts between the Kconfig system and the C preprocessor regarding include paths.
+
+*   **Initial Problem:** The `APPLICATION_CONFIG_DIR` variable, when used with `zephyr_include_directories`, led to Kconfig path duplication errors (`File not found: .../configuration/nice_nano_v2_nrf52840/configuration/nice_nano_v2_nrf52840/prj.conf`).
+*   **Solution:** The `set(APPLICATION_CONFIG_DIR ...)` line was commented out, and the board-specific configuration path was directly added to `include_directories` along with `configuration/common`. This ensures all necessary header files are found without confusing the Kconfig system.
+
+    ```cmake
+    # Original:
+    # set(APPLICATION_CONFIG_DIR "${CMAKE_CURRENT_LIST_DIR}/configuration/\${NORMALIZED_BOARD_TARGET}")
+    # ...
+    # zephyr_include_directories(
+    #   configuration/common
+    #   ${APPLICATION_CONFIG_DIR}
+    #   )
+
+    # Modified:
+    include_directories(
+      "configuration/common"
+      "${CMAKE_CURRENT_LIST_DIR}/configuration/nice_nano_v2_nrf52840"
+      )
+    ```
+
+### 2. `boards/aliexpress/nice_nano_v2/Kconfig.defconfig` Correction
+
+A Kconfig dependency loop was identified.
+
+*   **Problem:** The `if BOARD_NICE_NANO_V2` and `endif` block in `Kconfig.defconfig` incorrectly made `SOC_NRF52840_QIAA` dependent on `BOARD_NICE_NANO_V2`, while the board also depended on the SoC.
+*   **Solution:** The `if/endif` block was removed, allowing `Kconfig.defconfig` to simply set default values without creating circular dependencies.
+
+### 3. `nrf_desktop_5/configuration/nice_nano_v2_nrf52840/prj.conf` Updates
+
+Several Kconfig symbols were outdated or undefined, leading to build warnings treated as errors.
+
+*   **Problem 1:** `CONFIG_DESKTOP_BLE_ENABLE=y` was an undefined symbol.
+*   **Solution 1:** Replaced with `CONFIG_DESKTOP_BT=y`, which is the current Kconfig symbol for Bluetooth support.
+*   **Problem 2:** `CONFIG_DESKTOP_HID_BUTTON_MOUSE_0_KEY_ID` and `CONFIG_DESKTOP_HID_BUTTON_MOUSE_1_KEY_ID` were undefined.
+*   **Solution 2:** These lines were removed as the button-to-HID mapping is now handled via `hid_keymap_def.h`.
+*   **Problem 3:** `CONFIG_SETTINGS_NVS_POINTER=y` was undefined.
+*   **Solution 3:** This line was removed as it is an obsolete configuration option.
+*   **Problem 4:** `BUILD_ASSERT(CONFIG_BT_ID_MAX >= ...)` failed due to insufficient Bluetooth identities.
+*   **Solution 4:** Added `CONFIG_BT_ID_MAX=4` to ensure enough identities for bonding scenarios.
+
+### 4. Creation of Missing Header Files
+
+Several header files were missing from the board-specific configuration directory, causing "file not found" errors.
+
+*   **`port_state_def.h`**: Created an empty file based on the `nrf52840dk_nrf52840` template, adapted for `gpio0` only.
+*   **`hid_keymap_def.h`**: Created this file to define the mapping from button IDs to HID mouse report usages.
+    *   `key_id = 4` mapped to `usage_id = 1` (Left Click).
+    *   `key_id = 5` mapped to `usage_id = 2` (Right Click).
+*   **`hid_keyboard_leds_def.h`**: Created an empty file, as keyboard LED functionality is not required for a mouse.
+*   **`buttons_def.h`**: Created this file to map specific GPIO pins to logical button IDs for simulated movement and clicks.
+    *   Pins 17, 20, 22, 24 mapped to buttons 0-3 for movement.
+    *   Pins 6, 8 mapped to buttons 4-5 for clicks.
+*   **`settings_loader_def.h`**: Created an empty file to satisfy a build requirement, as this file is optional but unconditionally included by some SDK components.
+
+### 5. `nrf_desktop_5/configuration/nice_nano_v2_nrf52840/app.overlay` Creation
+
+*   **Purpose:** Defined device tree nodes for the physical buttons.
+*   **Configuration:** Mapped `button_17`, `button_20`, `button_22`, `button_24`, `button_6`, and `button_8` to their respective GPIO pins on `gpio0` with pull-up resistors and active-low logic.
+
+These changes collectively addressed the various build issues and configured the project for the requested simulated mouse functionality.

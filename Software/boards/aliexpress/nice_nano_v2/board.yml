@@ -2,4 +2,4 @@ board:
   name: nice_nano_v2
   vendor: aliexpress
   socs:
-    - name: nrf52840_qiaa
+    - name: nrf52840
