@@ -11,6 +11,14 @@ cmake_minimum_required(VERSION 3.20.0)
 # Add custom board directory
 set(BOARD_ROOT ${CMAKE_CURRENT_LIST_DIR}/..)
 
+# Add PMW3389 driver module
+list(APPEND ZEPHYR_EXTRA_MODULES
+  ${CMAKE_CURRENT_LIST_DIR}/../modules/drivers/pmw3389
+)
+
+# Set application configuration directory
+# set(APPLICATION_CONFIG_DIR "${CMAKE_CURRENT_LIST_DIR}/configuration/\${NORMALIZED_BOARD_TARGET}")
+
 find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
 project("nRF Desktop"
         VERSION 0.1)

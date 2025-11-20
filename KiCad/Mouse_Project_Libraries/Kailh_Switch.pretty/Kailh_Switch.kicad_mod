@@ -1,7 +1,7 @@
 (footprint "Kailh_Switch"
-	(version 20240108)
+	(version 20241229)
 	(generator "pcbnew")
-	(generator_version "8.0")
+	(generator_version "9.0")
 	(layer "F.Cu")
 	(property "Reference" "REF**"
 		(at 0 -8 0)
@@ -20,19 +20,6 @@
 		(unlocked yes)
 		(layer "F.Fab")
 		(uuid "f2421ebc-771d-4677-993d-837c58bd7d9e")
-		(effects
-			(font
-				(size 1 1)
-				(thickness 0.15)
-			)
-		)
-	)
-	(property "Footprint" ""
-		(at 0 0 0)
-		(unlocked yes)
-		(layer "F.Fab")
-		(hide yes)
-		(uuid "8a409543-2e5d-4cab-bb1f-fded0f5c8e4b")
 		(effects
 			(font
 				(size 1 1)
@@ -74,7 +61,7 @@
 			(width 0.1)
 			(type default)
 		)
-		(fill none)
+		(fill no)
 		(layer "F.SilkS")
 		(uuid "55f1cf88-ecd5-4691-8da3-2145918f09d5")
 	)
@@ -92,7 +79,7 @@
 	)
 	(pad "1" thru_hole oval
 		(at 0 -5.08)
-		(size 2.1 1.6)
+		(size 2.6 2)
 		(drill 1.1)
 		(layers "*.Cu" "*.Mask")
 		(remove_unused_layers no)
@@ -101,7 +88,7 @@
 	)
 	(pad "2" thru_hole oval
 		(at 0 0)
-		(size 2.1 1.6)
+		(size 2.6 2)
 		(drill 1.1)
 		(layers "*.Cu" "*.Mask")
 		(remove_unused_layers no)
@@ -110,11 +97,12 @@
 	)
 	(pad "3" thru_hole oval
 		(at 0 5.08)
-		(size 2.1 1.6)
+		(size 2.6 2)
 		(drill 1.1)
 		(layers "*.Cu" "*.Mask")
 		(remove_unused_layers no)
 		(thermal_bridge_angle 45)
 		(uuid "928ce299-283b-45ff-8663-c71da937fc56")
 	)
+	(embedded_fonts no)
 )

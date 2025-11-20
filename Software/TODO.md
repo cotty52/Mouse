@@ -4,14 +4,17 @@ This document is for tracking current tasks, next steps, and completed items to 
 
 ## Current Task
 
-*   **Integrate the PMW3389 motion sensor.**
+*   **Set up and test Bluetooth connectivity.**
 
 ## Next Steps
 
-*   **Download the PMW3389 driver manually.**
-*   **Provide the chip select (CS) and interrupt (IRQ) pins for the sensor.**
-*   Update `app.overlay` with the correct sensor pins.
-*   Build and test the firmware with the real motion sensor.
+*   Build the firmware using the **nRF Connect for VS Code extension** (manual build, not west commands).
+*   Flash the updated firmware to the nice!nano v2 board.
+*   Test Bluetooth pairing with a computer or mobile device.
+*   Verify mouse functionality over Bluetooth (movement via buttons, left/right clicks).
+*   Test switching between USB and Bluetooth modes.
+*   Test Bluetooth bonding and reconnection.
+*   Integrate the PMW3389 motion sensor (future task).
 *   Design and 3D print a case for the mouse.
 *   Implement power management for battery operation.
 
@@ -30,3 +33,13 @@ This document is for tracking current tasks, next steps, and completed items to 
 *   Built the nRF Desktop firmware for nice!nano v2.
 *   Tested basic mouse functionality (movement, clicks) using the simulated buttons.
 *   Documented the changes made to get the build to work in `notes.md`.
+*   Configured Bluetooth settings in `prj.conf`:
+    *   Enabled BLE peripheral configuration with proper device identification
+    *   Added peer control and bonding support
+    *   Configured Low Latency Packet Mode (LLPM) for reduced latency
+    *   Set up proper connection parameters for HID mouse operation
+    *   Configured dual HID subscriber support (USB + BLE)
+
+## Build Instructions
+
+**Note:** West workspace is not properly configured in this project. Use the **nRF Connect for VS Code extension** to build the firmware manually instead of west command-line tools.

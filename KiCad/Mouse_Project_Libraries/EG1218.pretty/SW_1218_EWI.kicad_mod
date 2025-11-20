@@ -1,11 +1,11 @@
 (footprint "SW_1218_EWI"
-	(version 20240108)
+	(version 20241229)
 	(generator "pcbnew")
-	(generator_version "8.0")
+	(generator_version "9.0")
 	(layer "F.Cu")
 	(tags "EG1218 ")
 	(property "Reference" "REF**"
-		(at 0 0 0)
+		(at 0 -7.5 0)
 		(unlocked yes)
 		(layer "F.SilkS")
 		(uuid "e9a31ef5-df87-4aa2-a67a-008341814411")
@@ -17,25 +17,13 @@
 		)
 	)
 	(property "Value" "SW_1218_EWI"
-		(at 0 0 0)
+		(at 0 9.5 0)
 		(unlocked yes)
 		(layer "F.Fab")
 		(uuid "ed2b1ad6-d988-4e9e-bfb0-984f0609b21c")
 		(effects
 			(font
 				(size 1 1)
-				(thickness 0.15)
-			)
-		)
-	)
-	(property "Footprint" ""
-		(at 0 -2.5 0)
-		(layer "F.Fab")
-		(hide yes)
-		(uuid "9c737cdc-fd4f-4f47-aa65-c644557a958e")
-		(effects
-			(font
-				(size 1.27 1.27)
 				(thickness 0.15)
 			)
 		)
@@ -233,7 +221,7 @@
 			(width 0)
 			(type solid)
 		)
-		(fill solid)
+		(fill yes)
 		(layer "F.Fab")
 		(uuid "47db1f08-d87d-4804-b144-8a09431fb9cf")
 	)
@@ -261,7 +249,7 @@
 		)
 	)
 	(fp_text user "${REFERENCE}"
-		(at 0 0 0)
+		(at 0 7.5 0)
 		(unlocked yes)
 		(layer "F.Fab")
 		(uuid "2a0d4994-67de-4af8-986b-309dab9f8144")
@@ -297,7 +285,7 @@
 	)
 	(pad "1" thru_hole circle
 		(at 0 -2.5)
-		(size 1.397 1.397)
+		(size 2 2)
 		(drill 0.889)
 		(layers "*.Cu" "*.Mask")
 		(remove_unused_layers no)
@@ -305,7 +293,7 @@
 	)
 	(pad "2" thru_hole circle
 		(at 0 0)
-		(size 1.397 1.397)
+		(size 2 2)
 		(drill 0.889)
 		(layers "*.Cu" "*.Mask")
 		(remove_unused_layers no)
@@ -313,12 +301,13 @@
 	)
 	(pad "3" thru_hole circle
 		(at 0 2.5)
-		(size 1.397 1.397)
+		(size 2 2)
 		(drill 0.889)
 		(layers "*.Cu" "*.Mask")
 		(remove_unused_layers no)
 		(uuid "f5be77b9-e510-4c1b-b240-1c450523ceb7")
 	)
+	(embedded_fonts no)
 	(model "${KIPRJMOD}/Mouse_Project_Libraries/EG1218.stp"
 		(offset
 			(xyz 0 0 0)

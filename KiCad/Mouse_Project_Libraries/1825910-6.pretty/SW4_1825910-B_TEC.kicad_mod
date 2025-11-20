@@ -1,7 +1,7 @@
 (footprint "SW4_1825910-B_TEC"
-	(version 20240108)
+	(version 20241229)
 	(generator "pcbnew")
-	(generator_version "8.0")
+	(generator_version "9.0")
 	(layer "F.Cu")
 	(tags "1825910-6 ")
 	(property "Reference" "REF**"
@@ -24,18 +24,6 @@
 		(effects
 			(font
 				(size 1 1)
-				(thickness 0.15)
-			)
-		)
-	)
-	(property "Footprint" ""
-		(at 0 0 0)
-		(layer "F.Fab")
-		(hide yes)
-		(uuid "3a9fa5f3-c63f-4a3e-88af-233f355faa7e")
-		(effects
-			(font
-				(size 1.27 1.27)
 				(thickness 0.15)
 			)
 		)
@@ -416,7 +404,7 @@
 	)
 	(pad "1" thru_hole rect
 		(at -6.500001 -4.500001)
-		(size 1.4986 1.4986)
+		(size 2 2)
 		(drill 0.9906)
 		(layers "*.Cu" "*.Mask")
 		(remove_unused_layers no)
@@ -424,7 +412,7 @@
 	)
 	(pad "2" thru_hole circle
 		(at 0 -4.500001)
-		(size 1.4986 1.4986)
+		(size 2 2)
 		(drill 0.9906)
 		(layers "*.Cu" "*.Mask")
 		(remove_unused_layers no)
@@ -432,7 +420,7 @@
 	)
 	(pad "3" thru_hole circle
 		(at -6.500001 0)
-		(size 1.4986 1.4986)
+		(size 2 2)
 		(drill 0.9906)
 		(layers "*.Cu" "*.Mask")
 		(remove_unused_layers no)
@@ -440,12 +428,13 @@
 	)
 	(pad "4" thru_hole circle
 		(at 0 0)
-		(size 1.4986 1.4986)
+		(size 2 2)
 		(drill 0.9906)
 		(layers "*.Cu" "*.Mask")
 		(remove_unused_layers no)
 		(uuid "fffd97f5-aa9a-460f-a0ca-0c132e90b719")
 	)
+	(embedded_fonts no)
 	(model "${KIPRJMOD}/Mouse_Project_Libraries/1825910-6.step"
 		(offset
 			(xyz -3.25 2.25 0)

@@ -1,10 +1,10 @@
 (footprint "pmw3389dm-t3qu"
-	(version 20240108)
+	(version 20241229)
 	(generator "pcbnew")
-	(generator_version "8.0")
+	(generator_version "9.0")
 	(layer "F.Cu")
 	(property "Reference" "REF**"
-		(at 0 -10 0)
+		(at 0 -11 0)
 		(unlocked yes)
 		(layer "F.SilkS")
 		(uuid "096556a7-c000-4346-bcec-3d77079cd0c4")
@@ -16,23 +16,10 @@
 		)
 	)
 	(property "Value" "pmw3389dm-t3qu"
-		(at 0 10 0)
+		(at 0 11 0)
 		(unlocked yes)
 		(layer "F.Fab")
 		(uuid "8e74bc2f-4ac9-4945-8de3-3fb3ddb81dc6")
-		(effects
-			(font
-				(size 1 1)
-				(thickness 0.15)
-			)
-		)
-	)
-	(property "Footprint" ""
-		(at 0 0 0)
-		(unlocked yes)
-		(layer "F.Fab")
-		(hide yes)
-		(uuid "84677236-f92e-46e4-8028-49744333c6a0")
 		(effects
 			(font
 				(size 1 1)
@@ -67,41 +54,90 @@
 		)
 	)
 	(attr through_hole)
-	(fp_rect
-		(start -4.55 -8.1)
-		(end 4.55 8.1)
+	(fp_line
+		(start -5.5 -9.5)
+		(end 5.5 -9.5)
 		(stroke
 			(width 0.1)
 			(type default)
 		)
-		(fill none)
 		(layer "F.SilkS")
-		(uuid "daf99937-6bd5-4418-8bad-b095192c5329")
+		(uuid "e7197236-505b-4a1d-b781-e61057512f1a")
+	)
+	(fp_line
+		(start -5.5 -7.5)
+		(end -5.5 -9.5)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "F.SilkS")
+		(uuid "7040d824-a2ae-4c96-88f8-b0fa98054ed5")
+	)
+	(fp_line
+		(start -5.5 7)
+		(end -5.5 9.5)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "F.SilkS")
+		(uuid "fe2b1fc2-1fa1-4f05-a074-1ff1950eddbe")
+	)
+	(fp_line
+		(start -5.5 9.5)
+		(end 5.5 9.5)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "F.SilkS")
+		(uuid "5157c6c9-8de3-4c5f-a945-1f4e1d955d47")
+	)
+	(fp_line
+		(start 5.5 -9.5)
+		(end 5.5 -7)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "F.SilkS")
+		(uuid "5bf11767-d290-4866-b76a-87a3decf6397")
+	)
+	(fp_line
+		(start 5.5 9.5)
+		(end 5.5 7.5)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "F.SilkS")
+		(uuid "d852df72-1c01-4e8f-8798-181eaa82e8fe")
 	)
 	(fp_circle
-		(center -5.5 -8.1)
-		(end -6 -8.1)
+		(center -5.5 -9.5)
+		(end -6 -9.5)
 		(stroke
 			(width 0.2)
 			(type default)
 		)
-		(fill none)
+		(fill no)
 		(layer "F.SilkS")
 		(uuid "9b6b72d6-3e4c-4eb8-a3f3-2534b1faddcc")
 	)
 	(fp_rect
-		(start -4 -7.5)
-		(end 4 7.5)
+		(start -4.5 -8.5)
+		(end 4.5 8.5)
 		(stroke
 			(width 0.1)
 			(type default)
 		)
-		(fill none)
+		(fill no)
 		(layer "Edge.Cuts")
 		(uuid "8d51af9d-c77f-46d7-9017-d91116edfc87")
 	)
 	(fp_text user "${REFERENCE}"
-		(at 0 11.5 0)
+		(at 0 12.5 0)
 		(unlocked yes)
 		(layer "F.Fab")
 		(uuid "8dccb0a8-3fc9-4e47-9bef-f00dfd434427")
@@ -240,4 +276,5 @@
 		(remove_unused_layers no)
 		(uuid "75af3002-9d48-45e7-9e3a-e365f63d89b3")
 	)
+	(embedded_fonts no)
 )
