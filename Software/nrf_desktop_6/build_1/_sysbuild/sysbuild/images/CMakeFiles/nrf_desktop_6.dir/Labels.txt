@@ -1,0 +1,13 @@
+# Target labels
+ nrf_desktop_6
+# Source files and their labels
+D:/GitHub/Mouse/Software/nrf_desktop_6/build_1/_sysbuild/sysbuild/images/CMakeFiles/nrf_desktop_6
+D:/GitHub/Mouse/Software/nrf_desktop_6/build_1/_sysbuild/sysbuild/images/CMakeFiles/nrf_desktop_6.rule
+D:/GitHub/Mouse/Software/nrf_desktop_6/build_1/_sysbuild/sysbuild/images/CMakeFiles/nrf_desktop_6-complete.rule
+D:/GitHub/Mouse/Software/nrf_desktop_6/build_1/_sysbuild/sysbuild/images/nrf_desktop_6-prefix/src/nrf_desktop_6-stamp/nrf_desktop_6-build.rule
+D:/GitHub/Mouse/Software/nrf_desktop_6/build_1/_sysbuild/sysbuild/images/nrf_desktop_6-prefix/src/nrf_desktop_6-stamp/nrf_desktop_6-configure.rule
+D:/GitHub/Mouse/Software/nrf_desktop_6/build_1/_sysbuild/sysbuild/images/nrf_desktop_6-prefix/src/nrf_desktop_6-stamp/nrf_desktop_6-download.rule
+D:/GitHub/Mouse/Software/nrf_desktop_6/build_1/_sysbuild/sysbuild/images/nrf_desktop_6-prefix/src/nrf_desktop_6-stamp/nrf_desktop_6-install.rule
+D:/GitHub/Mouse/Software/nrf_desktop_6/build_1/_sysbuild/sysbuild/images/nrf_desktop_6-prefix/src/nrf_desktop_6-stamp/nrf_desktop_6-mkdir.rule
+D:/GitHub/Mouse/Software/nrf_desktop_6/build_1/_sysbuild/sysbuild/images/nrf_desktop_6-prefix/src/nrf_desktop_6-stamp/nrf_desktop_6-patch.rule
+D:/GitHub/Mouse/Software/nrf_desktop_6/build_1/_sysbuild/sysbuild/images/nrf_desktop_6-prefix/src/nrf_desktop_6-stamp/nrf_desktop_6-update.rule

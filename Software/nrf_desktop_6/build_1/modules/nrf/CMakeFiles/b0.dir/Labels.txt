@@ -1,0 +1,13 @@
+# Target labels
+ b0
+# Source files and their labels
+D:/GitHub/Mouse/Software/nrf_desktop_6/build_1/modules/nrf/CMakeFiles/b0
+D:/GitHub/Mouse/Software/nrf_desktop_6/build_1/modules/nrf/CMakeFiles/b0.rule
+D:/GitHub/Mouse/Software/nrf_desktop_6/build_1/modules/nrf/CMakeFiles/b0-complete.rule
+D:/GitHub/Mouse/Software/nrf_desktop_6/build_1/modules/nrf/b0-prefix/src/b0-stamp/b0-build.rule
+D:/GitHub/Mouse/Software/nrf_desktop_6/build_1/modules/nrf/b0-prefix/src/b0-stamp/b0-configure.rule
+D:/GitHub/Mouse/Software/nrf_desktop_6/build_1/modules/nrf/b0-prefix/src/b0-stamp/b0-download.rule
+D:/GitHub/Mouse/Software/nrf_desktop_6/build_1/modules/nrf/b0-prefix/src/b0-stamp/b0-install.rule
+D:/GitHub/Mouse/Software/nrf_desktop_6/build_1/modules/nrf/b0-prefix/src/b0-stamp/b0-mkdir.rule
+D:/GitHub/Mouse/Software/nrf_desktop_6/build_1/modules/nrf/b0-prefix/src/b0-stamp/b0-patch.rule
+D:/GitHub/Mouse/Software/nrf_desktop_6/build_1/modules/nrf/b0-prefix/src/b0-stamp/b0-update.rule

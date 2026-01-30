@@ -1,0 +1,11 @@
+default: nrf_desktop_6
+build_dir: D:/GitHub/Mouse/Software/nrf_desktop_6/build_1
+domains:
+  - name: nrf_desktop_6
+    build_dir: D:/GitHub/Mouse/Software/nrf_desktop_6/build_1/nrf_desktop_6
+  - name: b0
+    build_dir: D:/GitHub/Mouse/Software/nrf_desktop_6/build_1/b0
+  - name: s1_image
+    build_dir: D:/GitHub/Mouse/Software/nrf_desktop_6/build_1/s1_image
+flash_order:
+  - nrf_desktop_6
