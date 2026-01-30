@@ -15,4 +15,29 @@
 		in-polling-period-us = <1000>;
 		in-report-size = <64>;
 	};
+
+	/* Define the 4 buttons for motion control */
+	buttons {
+		compatible = "gpio-keys";
+		
+		button0: button_0 {
+			gpios = <&gpio0 11 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+			label = "Button 1 - Up";
+		};
+		
+		button1: button_1 {
+			gpios = <&gpio0 12 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+			label = "Button 2 - Down";
+		};
+		
+		button2: button_2 {
+			gpios = <&gpio0 24 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+			label = "Button 3 - Left";
+		};
+		
+		button3: button_3 {
+			gpios = <&gpio0 25 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+			label = "Button 4 - Right";
+		};
+	};
 };
