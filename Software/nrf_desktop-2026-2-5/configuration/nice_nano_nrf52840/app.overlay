@@ -1,0 +1,191 @@
+/*
+ * Copyright (c) 2026 Christian
+ * Custom wireless mouse configuration for nice!nano
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#include <zephyr/dt-bindings/pwm/pwm.h>
+
+/ {
+	chosen {
+		zephyr,entropy = &rng;
+		zephyr,console = &uart0;
+		zephyr,shell-uart = &uart0;
+	};
+
+	/* Button definitions matching PCB pinout from NOTES.md */
+	buttons {
+		compatible = "gpio-keys";
+		
+		/* Left Click - D0 = P0.08 */
+		button0: button_0 {
+			gpios = <&gpio0 8 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+			label = "Left Click";
+			zephyr,code = <INPUT_BTN_0>;
+		};
+		
+		/* Right Click - D21 = P0.31 */
+		button1: button_1 {
+			gpios = <&gpio0 31 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+			label = "Right Click";
+			zephyr,code = <INPUT_BTN_1>;
+		};
+
+		/* Scroll Wheel Button - D20 = P0.29 */
+		button2: button_2 {
+			gpios = <&gpio0 29 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+			label = "Middle Click";
+			zephyr,code = <INPUT_BTN_2>;
+		};
+
+		/* Thumb Button 1 - D2 = P0.17 */
+		button3: button_3 {
+			gpios = <&gpio0 17 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+			label = "Thumb 1";
+			zephyr,code = <INPUT_BTN_3>;
+		};
+		
+		/* Thumb Button 2 - D3 = P0.20 */
+		button4: button_4 {
+			gpios = <&gpio0 20 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+			label = "Thumb 2";
+			zephyr,code = <INPUT_BTN_4>;
+		};
+		
+		/* Extra Button - D19 = P0.02 */
+		button5: button_5 {
+			gpios = <&gpio0 2 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+			label = "Extra Button";
+			zephyr,code = <INPUT_BTN_5>;
+		};
+	};
+
+	aliases {
+		sw0 = &button0;
+		sw1 = &button1;
+		sw2 = &button2;
+		sw3 = &button3;
+		sw4 = &button4;
+		sw5 = &button5;
+		led0 = &pwm_led0;
+		mcuboot-led0 = &blue_led;
+	};
+
+	pwmleds {
+		compatible = "pwm-leds";
+		pwm_led0: pwm_led_0 {
+			pwms = <&pwm0 0 PWM_MSEC(20) PWM_POLARITY_NORMAL>;
+			label = "Blue PWM LED";
+		};
+	};
+};
+
+/* PMW3389 Motion Sensor
+ *
+ * The board DTS (nice_nano-pinctrl.dtsi) already defines spi1_default and
+ * spi1_sleep with the correct pin mapping:
+ *   SCK  → P1.11  (D14)
+ *   MOSI → P0.10  (D16)
+ *   MISO → P0.09  (D10)
+ *
+ * We only need to enable the SPI bus, add the CS GPIO (P1.15, D18),
+ * and declare the PMW3389 device node.  The pinctrl references in the
+ * board DTS are inherited automatically.
+ */
+&spi1 {
+	compatible = "nordic,nrf-spim";
+	status = "okay";
+	/* NCS / Chip-Select: D18 = P1.15, active-low */
+	cs-gpios = <&gpio1 15 GPIO_ACTIVE_LOW>;
+
+	pmw3389@0 {
+		compatible = "pixart,pmw3389";
+		reg = <0>;
+		spi-max-frequency = <2000000>;  /* 2 MHz – conservative start */
+
+		/* MOTION / IRQ: D15 = P1.13, active-low */
+		irq-gpios = <&gpio1 13 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+
+		/* NRESET: D9 = P1.06, active-low hardware reset.
+		 * Driver drives this HIGH so the sensor is released from reset.
+		 * Remove only if your PCB has an external pull-up on NRESET.
+		 */
+		reset-gpios = <&gpio1 6 GPIO_ACTIVE_LOW>;
+	};
+};
+
+/* Scroll Wheel Encoder (QDEC) Configuration - TEMPORARILY DISABLED FOR USB TESTING */
+/*
+&qdec {
+	status = "okay";
+	enable-pin = <0xFFFFFFFF>;
+	steps = <24>;
+	led-pre = <0>;
+	
+	pinctrl-0 = <&qdec_default>;
+	pinctrl-1 = <&qdec_sleep>;
+	pinctrl-names = "default", "sleep";
+};
+*/
+
+/* PWM0 for Blue LED on P0.15 */
+&pinctrl {
+	qdec_default: qdec_default {
+		group1 {
+			psels = <NRF_PSEL(QDEC_A, 0, 22)>,
+			        <NRF_PSEL(QDEC_B, 1, 0)>;
+		};
+	};
+
+	qdec_sleep: qdec_sleep {
+		group1 {
+			psels = <NRF_PSEL(QDEC_A, 0, 22)>,
+			        <NRF_PSEL(QDEC_B, 1, 0)>;
+			low-power-enable;
+		};
+	};
+
+	pwm0_default: pwm0_default {
+		group1 {
+			psels = <NRF_PSEL(PWM_OUT0, 0, 15)>;
+			nordic,invert;
+		};
+	};
+
+	pwm0_sleep: pwm0_sleep {
+		group1 {
+			psels = <NRF_PSEL(PWM_OUT0, 0, 15)>;
+			low-power-enable;
+		};
+	};
+};
+
+&pwm0 {
+	status = "okay";
+	pinctrl-0 = <&pwm0_default>;
+	pinctrl-1 = <&pwm0_sleep>;
+	pinctrl-names = "default", "sleep";
+};
+
+/* USB Device configuration for HID */
+&usbd {
+	compatible = "nordic,nrf-usbd";
+	status = "okay";
+	num-bidir-endpoints = <0>;
+	num-in-endpoints = <2>;
+	num-out-endpoints = <2>;
+	num-isoin-endpoints = <0>;
+	num-isoout-endpoints = <0>;
+};
+
+/* UART for console/debugging */
+&uart0 {
+	status = "okay";
+	current-speed = <115200>;
+};
+
+/* Disable the original GPIO LED to avoid conflict */
+&blue_led {
+	status = "disabled";
+};

@@ -1,0 +1,32 @@
+/ {
+    buttons {
+        compatible = "gpio-keys";
+        #address-cells = <1>;
+        #size-cells = <0>;
+
+        button_17: button_17 {
+            gpios = <&gpio0 17 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+            label = "Button 17";
+        };
+        button_20: button_20 {
+            gpios = <&gpio0 20 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+            label = "Button 20";
+        };
+        button_22: button_22 {
+            gpios = <&gpio0 22 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+            label = "Button 22";
+        };
+        button_24: button_24 {
+            gpios = <&gpio0 24 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+            label = "Button 24";
+        };
+        button_6: button_6 {
+            gpios = <&gpio0 6 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+            label = "Button 6";
+        };
+        button_8: button_8 {
+            gpios = <&gpio0 8 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+            label = "Button 8";
+        };
+    };
+};

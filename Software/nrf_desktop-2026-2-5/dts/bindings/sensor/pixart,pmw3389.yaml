@@ -1,0 +1,30 @@
+# Copyright (c) 2026 Christian
+# SPDX-License-Identifier: MIT
+
+description: |
+  PMW3389 optical mouse sensor from PixArt Imaging.
+  High-performance gaming sensor with SPI interface,
+  configurable CPI (50–16000), and optional motion interrupt.
+
+compatible: "pixart,pmw3389"
+
+include: spi-device.yaml
+
+properties:
+  irq-gpios:
+    type: phandle-array
+    required: true
+    description: |
+      GPIO connected to the sensor MOTION pin. The sensor drives
+      this pin active-low when new motion data is available.
+      Configure with GPIO_ACTIVE_LOW and optionally GPIO_PULL_UP.
+
+  reset-gpios:
+    type: phandle-array
+    required: false
+    description: |
+      GPIO connected to the sensor NRESET pin (active-low hardware reset).
+      When specified, the driver drives this pin HIGH (inactive) during init
+      to ensure the sensor is released from reset before SPI communication.
+      Use GPIO_ACTIVE_LOW so that GPIO_OUTPUT_INACTIVE = pin HIGH.
+      If omitted the sensor relies on an external pull-up on NRESET.

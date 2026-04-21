@@ -1,0 +1,26 @@
+#
+# Copyright (c) 2026 Christian
+# SPDX-License-Identifier: MIT
+#
+# PMW3389 optical mouse sensor driver Kconfig
+
+config PMW3389
+	bool "PMW3389 optical mouse sensor driver"
+	default n
+	select SPI
+	select GPIO
+	depends on DT_HAS_PIXART_PMW3389_ENABLED
+	help
+	  Enable driver for the PixArt PMW3389 optical mouse sensor.
+	  Implements the Zephyr Sensor API (trigger + sample_fetch +
+	  channel_get + attr_set) so it is compatible with the nRF
+	  Desktop motion_sensor module.
+
+config PMW3389_LOG_LEVEL
+	int "PMW3389 log level"
+	depends on PMW3389
+	default 3
+	range 0 4
+	help
+	  Log verbosity for the PMW3389 driver.
+	  0 = none, 1 = error, 2 = warn, 3 = info, 4 = debug.
