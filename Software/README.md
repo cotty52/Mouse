@@ -29,7 +29,7 @@ Software
 │       ├── nice_nano_v2.yaml
 │       ├── nice_nano.yaml
 │       └── nice_nano.zmk.yml
-├── software-readme.md
+├── README.md
 └── TODO.md
 ```
 

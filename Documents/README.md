@@ -3,7 +3,7 @@
 ## File Structure
 ```
 Documents
-├── docs-readme.md
+├── README.md
 ├── nrf-documents
 │   ├── nrf52840-data-sheet.pdf
 │   ├── nRF52840-QFAA Reference Layout 1_0
