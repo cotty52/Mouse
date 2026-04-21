@@ -10,17 +10,15 @@ Mouse
 │   └── ...
 ├── KiCad
 ├── README.md
-├── Software
-│   ├── software-readme.md
-│   └── ...
-└── zmk_nice_nano
+└── Software
+    ├── software-readme.md
+    └── ...
+ 
 ```
 
-- ./Documents contains various documents related to the project, including datasheets, reference layouts, and documentation for the nRF Connect SDK and Zephyr project. See `Documents/docs-readme.md` for more details.
-- ./KiCad contains the KiCad project files for the PCB design. This includes schematics, PCB layout, and Gerber files.
-- ./Software contains the software development files for the project, including source code, documentation, and build files. See `Software/software-readme.md` for more details.
-- ./zmk_nice_nano contains the Zephyr port of the zmk firmware for the nice!nano. This is used as a reference for the software development of the custom mouse, as both the nRF SDK and ZMK use Zephyr as their underlying RTOS. The files in this directory are not directly used for the custom mouse, but they provide a helpful reference for how to structure the software and use the nRF SDK and Zephyr. More information about ZMK can be found on their website: https://zmk.dev/ or their GitHub repository: https://github.com/zmkfirmware/zmk
-
+- `Documents` contains various documents related to the project, including datasheets, reference layouts, and documentation for the nRF Connect SDK and Zephyr project. See `Documents/docs-readme.md` for more details.
+- `KiCad` contains the KiCad project files for the PCB design. This includes schematics, PCB layout, and Gerber files.
+- `Software` contains the software development files for the project, including source code, documentation, and build files. See `Software/software-readme.md` for more details.
 
 *Disclosure* - Some of the content (notes, drivers, etc) was generated with AI assistance. To differentiate between note files for AI to read vs for humans to read, files that are all upercase like GEMINI.md are meant specifically for AI agents to have knowledge of the environment (except for README.md files). Files that are all lowercase are created for humans to read. 
 
