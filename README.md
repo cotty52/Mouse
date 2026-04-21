@@ -1,19 +1,18 @@
 # Custom Wireless Mouse
 
-This project contains hardware and software designs for a custom wireless mouse. This is an initial prototype intended for me to learn about hardware design and embedded software development. I combined hardware and software files into one repository for easier management. As of 2026-04-21, the design supports basic mouse functionality, including movement, button presses, and scrolling, and is powered by a 3.7V Li-ion battery, rechargeable via USB-C.
+This project contains software and hardware designs for a custom wireless mouse. This is an initial prototype intended for me to learn about hardware design and embedded software development. I combined hardware and software files into one repository for easier management. As of 2026-04-21, the design supports basic mouse functionality, including movement, button presses, and scrolling, and is powered by a 3.7V Li-ion battery, rechargeable via USB-C.
 
 ## File Structure
 ```
 Mouse
 ├── Documents
-│   ├── docs-readme.md
+│   ├── README.md
 │   └── ...
 ├── KiCad
 ├── README.md
 └── Software
-    ├── software-readme.md
+    ├── README.md
     └── ...
- 
 ```
 
 - `Documents` contains various documents related to the project, including datasheets, reference layouts, and documentation for the nRF Connect SDK and Zephyr project. See `Documents/docs-readme.md` for more details.
