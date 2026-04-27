@@ -84,11 +84,12 @@ The new driver (`pmw3389.c`) mirrors the PMW3360 driver structure so it integrat
 
 | Signal | Pin | GPIO |
 |--------|-----|------|
-| SCK | D14 | P1.11 |
-| MOSI | D16 | P0.10 |
+| NRESET | D9 | P1.06 |
 | MISO | D10 | P0.09 |
+| MOSI | D16 | P0.10 |
+| SCLK | D14 | P1.11 |
+| MOTION | D15 | P1.13 |
 | NCS | D18 | P1.15 |
-| MOTION/IRQ | D15 | P1.13 |
 
 The SPI pin assignments are already defined in `boards/nicekeyboards/nice_nano/nice_nano-pinctrl.dtsi` (`spi1_default` / `spi1_sleep`). The overlay only needed to add the CS GPIO and the sensor device node
 

@@ -18,6 +18,7 @@
 *.exe
 *.o
 *.so
+
 nrf52840/~nrfmicro.kicad_sch.lck
 nrf52840/fp-info-cache
 nrf52840/nrfmicro.kicad_pcb
@@ -25,3 +26,5 @@ nrf52840/nrfmicro.kicad_prl
 nrf52840/nrfmicro.kicad_pro
 nrf52840/nrfmicro.kicad_sch
 build/
+
+*.code-workspace

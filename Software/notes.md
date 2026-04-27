@@ -2,6 +2,11 @@
 
 This document provides a concise overview of the project structure and configuration, focusing on the `nrf_desktop_5` setup for the nice!nano v2 board.
 
+## Quick Notes
+When changing settings using the kconfig gui, clicking 'apply' will update <build>/<project_name>/zephyr/.config
+
+
+
 ## Key Concepts
 
 The project has two main configuration layers:

@@ -1,6 +1,0 @@
-mcuboot_primary:
-  address: 0x1000
-  size: 0xF7000
-settings_storage:
-  address: 0xF8000
-  size: 0x8000

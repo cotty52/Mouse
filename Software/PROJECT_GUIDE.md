@@ -1,6 +1,6 @@
 # nRF Desktop Custom Wireless Mouse Project Guide
 
-**Last Updated:** February 20, 2026  
+**Last Updated:** April 24, 2026  
 **Project Status:** Hardware complete, BLE working, integrating PMW3389 sensor driver
 
 ---
@@ -56,17 +56,32 @@ This project is a custom wireless mouse based on Nordic Semiconductor's **nRF De
 
 ### Typical Workflow
 
-1. **Understanding Changes:** Start by reviewing this guide and [NOTES.md](NOTES.md) for technical references
+1. **Understanding Changes:** Start by reviewing this guide for technical references
 2. **Locating Files:** Use the "Critical Files & Directories" section below to find relevant configuration files
 3. **Making Changes:** Modify the appropriate combination of DTS overlays, Kconfig settings, and _def.h header files
-4. **Building:** Reference the build command in [NOTES.md](NOTES.md); builds are done via nRF Connect extension or west CLI
-5. **Verification:** Check build output in `build_custom_*/` directories for errors and generated artifacts
+4. **Building:** Use the nRF Connect extension or the west CLI command below
+5. **Verification:** Check build output in `build_*/` directories for errors and generated artifacts
 
-### Build Command (from NOTES.md)
+### Build Command (CLI alternative to nRF Connect extension)
+
+**Prerequisite:** Run `nrf-env` in fish shell first — this sets `ZEPHYR_BASE`, toolchain `PATH`, and all required env vars. Defined in `~/.config/fish/config.fish`.
 
 ```bash
-cd /home/christian/ncs/v3.2.1 && west build --build-dir /home/christian/ncs_projects/nrf_desktop-2026-2-5/build_custom_2 /home/christian/ncs_projects/nrf_desktop-2026-2-5
+# In fish shell:
+nrf-env
+
+# Then build (canonical command from nRF Connect GUI output):
+west build \
+  --build-dir /home/christian/Projects/Mouse/Software/nrf_desktop-2026-04-23/build_custom \
+  /home/christian/Projects/Mouse/Software/nrf_desktop-2026-04-23 \
+  --pristine \
+  --board nice_nano/nrf52840 \
+  --no-sysbuild \
+  -- \
+  -DBOARD_ROOT="/home/christian/Projects/Mouse/Software"
 ```
+
+For new machine setup and GUI build instructions, see `Guide/README.md`.
 
 ### Common Modification Patterns
 
@@ -558,6 +573,145 @@ To add buttons or change report structure, modify this file and ensure `hid_stat
 
 ---
 
+## Setting Up a New nRF Desktop Project with Custom Hardware
+
+This section documents what is required beyond the standard nRF Desktop source to get a clean build with custom hardware — specifically an out-of-tree sensor driver and a custom board. It was written after debugging the first successful build of the `nrf_desktop-2026-04-23` project.
+
+### 1. CLI Build Environment
+
+nRF Desktop is built with `west`, which requires the nRF Connect toolchain to be activated first. A fish shell function handles this:
+
+```fish
+nrf-env    # defined in ~/.config/fish/config.fish
+```
+
+This sets `ZEPHYR_BASE`, `PATH`, `LD_LIBRARY_PATH`, `PYTHONHOME`, and the Zephyr SDK variables. **You must run this before any `west` command in a new terminal.**
+
+The canonical build command (copied from nRF Connect GUI output):
+
+```bash
+west build \
+  --build-dir /home/christian/Projects/Mouse/Software/nrf_desktop-2026-04-23/build_custom \
+  /home/christian/Projects/Mouse/Software/nrf_desktop-2026-04-23 \
+  --pristine \
+  --board nice_nano/nrf52840 \
+  --no-sysbuild \
+  -- \
+  -DBOARD_ROOT="/home/christian/Projects/Mouse/Software"
+```
+
+Use `--pristine` any time you change Kconfig, add files, or change CMake variables. For incremental C-only changes, omit it for speed.
+
+### 2. Integrating an Out-of-Tree Sensor Driver (PMW3389 Example)
+
+nRF Desktop only ships drivers for PMW3360 and PAW3212. Adding a third-party driver (PMW3389 in this case) requires touching **six places**. Missing any one of them causes a fatal Kconfig or compile error.
+
+#### File layout
+
+Place driver files under the project root (not under `src/`):
+
+```
+nrf_desktop-2026-04-23/
+├── drivers/
+│   └── sensor/
+│       └── pmw3389/
+│           ├── Kconfig          ← defines CONFIG_PMW3389, CONFIG_PMW3389_LOG_LEVEL
+│           └── pmw3389.c        ← Zephyr Sensor API implementation
+├── include/
+│   └── sensor/
+│       └── pmw3389.h            ← driver public header (attributes enum)
+└── dts/
+    └── bindings/
+        └── sensor/
+            └── pixart,pmw3389.yaml  ← DTS compatible string binding
+```
+
+#### Change 1 — Root `Kconfig`: source the driver's Kconfig
+
+Add before the `menu "nRF Desktop"` line so the driver's symbols are visible to Kconfig:
+
+```
+rsource "drivers/sensor/pmw3389/Kconfig"
+```
+
+**Why:** nRF Desktop's Kconfig tree doesn't automatically discover files outside `src/`. Without this, `CONFIG_PMW3389` is an undefined symbol and any `.conf` file that sets it causes a fatal "Aborting due to Kconfig warnings" error.
+
+#### Change 2 — Root `CMakeLists.txt`: compile the driver source and expose the header
+
+```cmake
+zephyr_include_directories(include)   # makes <sensor/pmw3389.h> findable
+
+zephyr_library_sources_ifdef(CONFIG_PMW3389
+  drivers/sensor/pmw3389/pmw3389.c
+)
+```
+
+**Why:** The nRF Desktop CMakeLists only adds `src/` subdirectories. The driver source won't be compiled otherwise, and `#include <sensor/pmw3389.h>` won't resolve.
+
+#### Change 3 — `src/hw_interface/Kconfig.motion`: add the sensor as a motion choice option
+
+Inside the existing `choice "Select motion interface"` block, add a new entry:
+
+```
+config DESKTOP_MOTION_SENSOR_PMW3389_ENABLE
+    bool "Motion from optical sensor PMW3389"
+    select DESKTOP_MOTION_SENSOR_ENABLE
+    depends on PMW3389
+    help
+      If selected, movement data is obtained from PMW3389 optical sensor.
+```
+
+Also add to `DESKTOP_MOTION_SENSOR_TYPE`:
+
+```
+default "pmw3389" if DESKTOP_MOTION_SENSOR_PMW3389_ENABLE
+```
+
+**Why:** The nRF Desktop motion module uses a Kconfig choice to select the active sensor. An unlisted sensor can't be selected, so `DESKTOP_MOTION_SENSOR_ENABLE` remains `n`, causing downstream config warnings to abort the build.
+
+#### Change 4 — `configuration/common/motion_sensor.h`: add the sensor's attribute mapping
+
+This header maps nRF Desktop's generic motion options to driver-specific sensor attributes. Add an `#elif` block for the new sensor:
+
+```c
+#elif CONFIG_DESKTOP_MOTION_SENSOR_PMW3389_ENABLE
+
+ #include <sensor/pmw3389.h>
+
+ #define MOTION_SENSOR_COMPATIBLE pixart_pmw3389
+
+ static const int motion_sensor_option_attr[MOTION_SENSOR_OPTION_COUNT] = {
+    [MOTION_SENSOR_OPTION_CPI]                = PMW3389_ATTR_CPI,
+    [MOTION_SENSOR_OPTION_SLEEP_ENABLE]       = PMW3389_ATTR_REST_ENABLE,
+    [MOTION_SENSOR_OPTION_SLEEP1_TIMEOUT]     = -ENOTSUP,
+    [MOTION_SENSOR_OPTION_SLEEP2_TIMEOUT]     = -ENOTSUP,
+    [MOTION_SENSOR_OPTION_SLEEP3_TIMEOUT]     = -ENOTSUP,
+    [MOTION_SENSOR_OPTION_SLEEP1_SAMPLE_TIME] = -ENOTSUP,
+    [MOTION_SENSOR_OPTION_SLEEP2_SAMPLE_TIME] = -ENOTSUP,
+    [MOTION_SENSOR_OPTION_SLEEP3_SAMPLE_TIME] = -ENOTSUP,
+ };
+```
+
+`MOTION_SENSOR_COMPATIBLE` must match the DTS `compatible` string with commas replaced by underscores (e.g., `"pixart,pmw3389"` → `pixart_pmw3389`). The `-ENOTSUP` entries are for features the PMW3389 driver doesn't expose individually (sleep timings are handled internally by the sensor).
+
+**Why:** Without this block, the preprocessor falls through to `#else #error "Sensor not supported"`, which terminates compilation of `motion_sensor.c`. The `MOTION_SENSOR_COMPATIBLE` macro is used by `DEVICE_DT_GET_ONE()` to look up the device at runtime.
+
+### 3. Keeping `prj.conf` Clean of Unsatisfied Dependencies
+
+NCS treats most Kconfig assignment-vs-result mismatches as fatal warnings. Two rules to follow:
+
+- **Don't set driver Kconfigs that depend on a DTS node if that node isn't in the overlay.** For example, `CONFIG_QDEC_NRFX=y` requires `DT_HAS_NORDIC_NRF_QDEC_ENABLED=y` (i.e., an enabled `nordic,nrf-qdec` node in the DTS). If the QDEC block is commented out in `app.overlay`, this line must also be removed from `prj.conf`.
+
+- **Don't set sub-options for disabled parents.** Options like `CONFIG_DESKTOP_MOTION_SENSOR_CPI` have `depends on DESKTOP_MOTION_SENSOR_ENABLE`. If the parent is `n` (because the sensor choice wasn't properly wired), the sub-options silently mismatch and abort the build.
+
+### 4. DTS Binding Discovery
+
+Zephyr finds DTS binding YAML files by searching `dts/bindings/` under the application directory and any registered board roots. Placing `pixart,pmw3389.yaml` under `nrf_desktop-*/dts/bindings/sensor/` is sufficient — no extra CMake variable is needed.
+
+The binding file must declare `compatible: "pixart,pmw3389"` and list all required properties so the DTS compiler can validate `app.overlay`. If the binding is missing, the build produces an error like `node has unknown compatible`.
+
+---
+
 ## Common Issues & Troubleshooting
 
 ### Build Failures
@@ -620,7 +774,7 @@ CONFIG_CAF_BUTTONS_LOG_LEVEL_DBG=y
 
 ### UF2 Firmware Generation
 
-**Command for nice!nano** (from [NOTES.md](NOTES.md)):
+**Command for nice!nano**:
 
 ```bash
 # For nRF52840 (nice!nano)
@@ -724,7 +878,6 @@ Key modules to understand:
 
 ### Project-Specific References
 
-- **[NOTES.md](NOTES.md)** - User-maintained technical reference with build commands, pinout, bootloader info
 - **Hardware datasheets:**
   - nRF52840 Product Specification (Nordic Semiconductor)
   - PMW3389 Datasheet (PixArt Imaging)
@@ -810,7 +963,7 @@ Use separate build directories for experimenting:
 - `boards/nicekeyboards/nice_nano/` - Board definition changes
 - `nrf_desktop-2026-2-5/configuration/nice_nano*/` - All application configs
 - Any modifications to `nrf_desktop-2026-2-5/src/` (if customizing modules)
-- This PROJECT_GUIDE.md and NOTES.md
+- This PROJECT_GUIDE.md
 
 **Don't track:**
 - `build_*/` directories (build artifacts)
@@ -844,9 +997,8 @@ Use separate build directories for experimenting:
 When joining this project, prioritize reading:
 1. This **PROJECT_GUIDE.md** (you're reading it now)
 2. **Task Tracking** section above for current work items
-3. **[NOTES.md](NOTES.md)** for technical details and commands
-4. **Hardware Configuration** section for pinout reference
-5. Current **prj.conf** and **app.overlay** to see active configuration
+3. **Hardware Configuration** section for pinout reference
+4. Current **prj.conf** and **app.overlay** to see active configuration
 
 ### Making Effective Changes
 
