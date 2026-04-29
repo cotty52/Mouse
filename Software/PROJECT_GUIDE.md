@@ -126,7 +126,7 @@ Changes often require coordinating across all three layers for consistency.
 | Thumb Button 2 | D3 | P0.20 | Side button (back) |
 | Extra Button | D19 | P0.02 | Additional control |
 | Scroll Wheel Button | D20 | P0.29 | Middle click |
-| Encoder Phase A | D5 | P0.22 | Scroll wheel quadrature |
+| Encoder Phase A | D5 | P0.24 | Scroll wheel quadrature |
 | Encoder Phase B | D6 | P1.00 | Scroll wheel quadrature |
 | 2.4 GHz Switch | D7 | P0.11 | Mode selector (future) |
 | Bluetooth Switch | D8 | P1.04 | Mode selector |

@@ -102,7 +102,7 @@ All in `Software/nrf_desktop-2026-04-23/configuration/nice_nano_nrf52840/`:
 | Left button | D0 | P0.08 |
 | Thumb 1 | D2 | P0.17 |
 | Thumb 2 | D3 | P0.20 |
-| Encoder A | D5 | P0.22 |
+| Encoder A | D5 | P0.24 |
 | Encoder B | D6 | P1.00 |
 | 2.4 GHz switch | D7 | P0.11 |
 | Bluetooth switch | D8 | P1.04 |
@@ -126,6 +126,10 @@ Modules communicate exclusively via the Application Event Manager — no direct 
 - BLE/USB transport modules send reports to the host
 
 Reference: `nrf52840gmouse_nrf52840/` configuration is the most complete mouse example in nRF Desktop — use it when implementing features like RGB LEDs, peer selection, or battery charging.
+
+## Available Tools
+
+**Nordic Semiconductor docs MCP** (`mcp__nordic-semiconductor-docs__search_nordic_semi_knowledge`) — search Nordic's official documentation directly. Use this instead of web search when looking up Kconfig symbols, nRF Desktop module APIs, Zephyr peripheral drivers (SPI, QDEC, ADC), BLE stack behavior, or nRF52840 hardware details.
 
 ## Debugging
 
