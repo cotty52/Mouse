@@ -8,7 +8,7 @@ This project contains software and hardware designs for a custom wireless mouse.
 Mouse/
 ├── Documents/        # Datasheets, bootloader UF2, 3D models
 ├── Guide/
-│   └── README.md     # New machine setup guide (start here after cloning)
+│   └── README.md     # New machine setup guide
 ├── KiCad/            # PCB schematics and layout
 └── Software/
     ├── PROJECT_GUIDE.md  # Architecture, task tracking, module reference
@@ -20,11 +20,15 @@ Mouse/
 - `KiCad` contains the KiCad project files for the PCB design (schematics, PCB layout, Gerber files).
 - `Software` contains firmware source, board definitions, and configuration files. See `Software/PROJECT_GUIDE.md` for details.
 
-*Disclosure* - Some of the content (notes, drivers, etc) was generated with AI assistance.
-
 ## Hardware Design
 
 The hardware design is based on the nRF52840 because of its popularity/availability, built in Bluetooth, low power consumption, and integration with the nRF SDK for software development. The PCB was designed using KiCad and currently relies on a nRF52840 nice!nano microcontroller for higher level development in the early stages. The microcontroller includes a USB-C port for charging and firmware flashing, a charging protection circuit, and enough GPIO for this project. The design also includes a PMW3389 optical sensor for mouse movement, which is supported by the nRF SDK and Zephyr.
+
+### PCB Images
+
+| Full | Front | Back |
+|:---:|:---:|:---:|
+| ![](KiCad/images/full-no-fill.svg) | ![](KiCad/images/front.svg) | ![](KiCad/images/back.svg) |
 
 ## Software Design
 
